@@ -4,15 +4,25 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Adapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar myToolbar;
+    private RecyclerView recycleView;
+    private RecyclerView.LayoutManager layoutManager;
+    private List<String>list;
+    private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         myToolbar = findViewById(R.id.toolBar);
         setSupportActionBar(myToolbar);
+        recycleView = findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recycleView.setLayoutManager(layoutManager);
+        recycleView.setHasFixedSize(true);
+        list = Arrays.asList(getResources().getStringArray(R.array.Country));
+        adapter = new CountryAdapter(list);
+        recycleView.setAdapter(adapter);
+
+
     }
 
     @Override
