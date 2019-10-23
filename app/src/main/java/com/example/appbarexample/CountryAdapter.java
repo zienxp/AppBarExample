@@ -21,7 +21,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
@@ -38,6 +38,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHo
         return list.size();
     }
 
+
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
@@ -48,9 +50,10 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHo
 
 
         }
-    }
 
-    public void updateList(List<String> newList){
+
+    }
+    public void updateList(List<String> newList) {
         list = new ArrayList<>();
         list.addAll(newList);
         notifyDataSetChanged();

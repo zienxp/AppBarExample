@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Adapter;
+import androidx.appcompat.widget.SearchView;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,17 +14,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private Toolbar myToolbar;
     private RecyclerView recycleView;
     private RecyclerView.LayoutManager layoutManager;
     private List<String>list;
     private RecyclerView.Adapter adapter;
-
+    private CountryAdapter countryAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         list = Arrays.asList(getResources().getStringArray(R.array.Country));
         adapter = new CountryAdapter(list);
         recycleView.setAdapter(adapter);
+
 
 
     }
@@ -61,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
         };
         MenuItem searchItem = menu.findItem(R.id.action_search);
         searchItem.setOnActionExpandListener(onActionExpandListener);
+        SearchView searchView = (SearchView)searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
         return true;
+
+
     }
 
     @Override
@@ -81,5 +88,26 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        String userInput = s.toLowerCase();
+        List<String> newList = new ArrayList<>();
+
+        for (String l : list){
+            if (l.toLowerCase().contains(userInput)){
+                newList.add(l);
+            }
+        }
+        countryAdapter.updateList(newList);
+
+        return false;
     }
 }
