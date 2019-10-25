@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private RecyclerView recycleView;
     private RecyclerView.LayoutManager layoutManager;
     private List<String>list;
-    private RecyclerView.Adapter adapter;
-    private CountryAdapter countryAdapter;
+//    private RecyclerView.Adapter adapter;
+    private CountryAdapter adapter; // make countryAdapter is adapter to work
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 newList.add(l);
             }
         }
-        countryAdapter.updateList(newList);
+        adapter.updateList(newList);
 
         return false;
     }

@@ -18,6 +18,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHo
         this.list = list;
     }
 
+
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +41,6 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHo
     }
 
 
-
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
@@ -51,11 +52,13 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.MyViewHo
 
         }
 
-
     }
     public void updateList(List<String> newList) {
         list = new ArrayList<>();
         list.addAll(newList);
         notifyDataSetChanged();
+
     }
+
+
 }
